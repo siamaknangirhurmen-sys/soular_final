@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صنایع صبح قشلاق</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+            min-height: 100vh;
+            font-family: Tahoma; 
+            color: gold; 
+            padding: 20px;
+        }
+        
+        .login-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        
+        .company-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: #FFD700;
+            color: #8B0000;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background: #ffed4e;
+        }
+        
+        .main-system {
+            display: none;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #FFD700;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .nav-btn {
+            background: #FFD700;
+            color: #8B0000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .nav-btn:hover {
+            background: #ffed4e;
+        }
+        
+        .dashboard {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #FFD700;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .section {
+            display: none;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .machine-card {
+            border: 2px solid #8B0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #8B0000;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        th {
+            background: #8B0000;
+            color: #FFD700;
+        }
+        
+        .priority-high { background: #ffebee; font-weight: bold; }
+        .priority-medium { background: #fff3e0; }
+        .priority-low { background: #e8f5e8; }
+        
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .printable, .printable * {
+                visibility: visible;
+            }
+            .printable {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+        
+        .user-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 215, 0, 0.9);
+            color: #8B0000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #8B0000;
+            color: #FFD700;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        /* استایل‌های جدید برای بخش حراست */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #8B0000;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #8B0000;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .vehicle-image {
+            width: 100%;
+            max-width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #8B0000;
+            margin-top: 10px;
+        }
+        
+        .vehicle-card {
+            background: #f8f9fa;
+            border: 2px solid #8B0000;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .vehicle-card img {
+            width: 100%;
+            max-width: 150px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #8B0000;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #8B0000;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active {
+            background: #FFD700;
+            color: #8B0000;
+        }
+        
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحه لاگین -->
+    <div class="login-page" id="loginPage">
+        <div class="logo-container">
+            <img src="123.png" alt="لوگو صنایع صبح قشلاق" class="logo-image" onerror="this.style.display='none'">
+            <div class="company-name">صنایع صبح قشلاق</div>
+        </div>
+        
+        <div class="login-form">
+            <h2 style="margin-bottom: 30px; color: #FFD700;">ورود به سیستم</h2>
+            <input type="text" id="username" class="login-input" placeholder="نام کاربری" value="123">
+            <input type="password" id="password" class="login-input" placeholder="رمز عبور" value="1234">
+            <div class="error-message" id="errorMessage"></div>
+            <button class="login-btn" onclick="login()">ورود به سامانه</button>
+            
+            <div style="margin-top: 20px; color: #FFD700; font-size: 14px;">
+                <div>کاربر فروش: 123 / 1234</div>
+                <div>کاربر تولید: 222 / 2222</div>
+                <div>کاربر انبار: 333 / 3333</div>
+                <div>کاربر حراست: 444 / 4444</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- سیستم اصلی -->
+    <div class="main-system" id="mainSystem">
+        <button class="logout-btn" onclick="logout()">خروج</button>
+        <div class="user-info" id="userInfo"></div>
+        
+        <div class="container">
+            <div class="header">
+                <img src="123.png" alt="لوگو صنایع صبح قشلاق" class="header-logo" onerror="this.style.display='none'">
+                <div style="font-size: 2rem;">🏭 صنایع صبح قشلاق</div>
+                <div class="nav-buttons" id="navButtons">
+                    <!-- دکمه‌ها بر اساس نوع کاربر نمایش داده می‌شوند -->
+                </div>
+            </div>
+
+            <!-- داشبورد -->
+            <div id="dashboard" class="section active">
+                <h2>📊 داشبورد مدیریت</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div>📦 سفارشات فعال</div>
+                        <div class="stat-number" id="activeOrders">0</div>
+                        <div>مورد</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>🏭 خطوط تولید</div>
+                        <div class="stat-number">۵</div>
+                        <div>خط فعال</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>👥 نیروی انسانی</div>
+                        <div class="stat-number">۶۱/۶۱</div>
+                        <div>نفر حاضر</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>🚛 بارگیری امروز</div>
+                        <div class="stat-number">۳</div>
+                        <div>محموله</div>
+                    </div>
+                    <div class="stat-card">
+                        <div>🚚 ماشین‌های ثبت شده</div>
+                        <div class="stat-number" id="totalVehicles">0</div>
+                        <div>وسیله</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ماژول فروش -->
+            <div id="sales" class="section">
+                <h2>💰 مدیریت فروش و سفارشات</h2>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>📝 ثبت سفارش جدید</h3>
+                    <div style="display: grid; gap: 15px; margin-top: 20px; grid-template-columns: 1fr 1fr;">
+                        <input type="text" id="customerName" placeholder="نام مشتری" style="padding: 12px; border: 2px solid #8B0000; border-radius: 8px;">
+                        <select id="productSelect" style="padding: 12px; border: 2px solid #8B0000; border-radius: 8px;">
+                            <option value="">انتخاب محصول</option>
+                            <option value="نوتلا">نوتلا</option>
+                            <option value="بیسکوویت">بیسکوویت</option>
+                            <option value="بسکوییت">بسکوییت</option>
+                            <option value="آردی">آردی</option>
+                            <option value="ترافلی">ترافلی</option>
+                            <option value="کراشوک 31">کراشوک 31</option>
+                        </select>
+                        <input type="number" id="orderQuantity" placeholder="تعداد" style="padding: 12px; border: 2px solid #8B0000; border-radius: 8px;">
+                        <select id="prioritySelect" style="padding: 12px; border: 2px solid #8B0000; border-radius: 8px;">
+                            <option value="low">اولویت پایین</option>
+                            <option value="medium">اولویت متوسط</option>
+                            <option value="high">اولویت بالا</option>
+                        </select>
+                        <input type="text" id="shamsiDate" placeholder="تاریخ تحویل (مثلاً: 1403/10/20)" style="padding: 12px; border: 2px solid #8B0000; border-radius: 8px; grid-column: 1 / -1;">
+                        <button class="nav-btn" onclick="addOrder()" style="grid-column: 1 / -1;">✅ ثبت سفارش</button>
+                    </div>
+                </div>
+
+                <h3>📋 لیست سفارشات</h3>
+                <div id="orderList">
+                    <!-- سفارشات اینجا نمایش داده می‌شوند -->
+                </div>
+            </div>
+
+            <!-- برنامه ریزی تولید -->
+            <div id="production" class="section">
+                <div class="printable">
+                    <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #8B0000; padding-bottom: 15px;">
+                        <h1>📅 برنامه تولید روزانه</h1>
+                        <h2 id="current-date">تاریخ: ۱۴۰۳/۱۰/۱۵</h2>
+                    </div>
+                    
+                    <div id="productionSchedule">
+                        <!-- برنامه تولید اینجا تولید می‌شود -->
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="nav-btn" onclick="generateProductionPlan()">🔄 تولید برنامه جدید</button>
+                        <button class="nav-btn" onclick="window.print()">🖨 پرینت برنامه تولید</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مدیریت بارگیری -->
+            <div id="warehouse" class="section">
+                <h2>🚛 مدیریت بارگیری و انبار</h2>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>📦 برنامه بارگیری امروز</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>زمان بارگیری</th>
+                                <th>محصول</th>
+                                <th>تعداد</th>
+                                <th>پلاک خودرو</th>
+                                <th>راننده</th>
+                                <th>وضعیت</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loadingTable">
+                            <tr>
+                                <td>🕘 ۰۹:۰۰ - ۱۰:۰۰</td>
+                                <td>نوتلا</td>
+                                <td>۱,۲۰۰ بسته</td>
+                                <td>۵۴-۲۳۴-۱۱</td>
+                                <td>احمد محمدی</td>
+                                <td style="color: green;">✅ آماده</td>
+                                <td><button class="nav-btn" style="padding: 5px 10px; font-size: 12px;">تأیید بارگیری</button></td>
+                            </tr>
+                            <tr>
+                                <td>🕚 ۱۱:۰۰ - ۱۲:۰۰</td>
+                                <td>بیسکوویت</td>
+                                <td>۸۰۰ بسته</td>
+                                <td>۷۲-۱۵۶-۴۵</td>
+                                <td>رضا کریمی</td>
+                                <td style="color: orange;">⏳ در انتظار</td>
+                                <td><button class="nav-btn" style="padding: 5px 10px; font-size: 12px;">تأیید بارگیری</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- مدیریت حراست -->
+            <div id="security" class="section">
+                <h2>🚔 مدیریت حراست و ماشین‌آلات</h2>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>🚚 ثبت اطلاعات ماشین جدید</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="vehicleName">نام ماشین</label>
+                            <input type="text" id="vehicleName" class="form-control" placeholder="مثال: کامیون ایسوزو">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="driverName">نام راننده</label>
+                            <input type="text" id="driverName" class="form-control" placeholder="نام و نام خانوادگی راننده">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="plateNumber">شماره پلاک</label>
+                            <input type="text" id="plateNumber" class="form-control" placeholder="مثال: 54-234-11">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="driverPhone">شماره تماس راننده</label>
+                            <input type="tel" id="driverPhone" class="form-control" placeholder="مثال: 09123456789">
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="productImage">عکس محصول</label>
+                            <input type="file" id="productImage" class="form-control" accept="image/*">
+                            <div id="imagePreview" style="display: none;">
+                                <img id="previewImg" class="vehicle-image" src="" alt="پیش‌نمایش عکس">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="nav-btn" onclick="addVehicle()" style="margin-top: 15px;">✅ ثبت ماشین</button>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>🔍 جستجو و فیلتر ماشین‌ها</h3>
+                    
+                    <input type="text" id="searchVehicles" class="search-box" placeholder="جستجو بر اساس نام ماشین، راننده یا پلاک...">
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterVehicles('all')">همه</button>
+                        <button class="filter-btn" onclick="filterVehicles('truck')">کامیون</button>
+                        <button class="filter-btn" onclick="filterVehicles('van')">ون</button>
+                        <button class="filter-btn" onclick="filterVehicles('loader')">لودر</button>
+                    </div>
+                </div>
+                
+                <h3>📋 لیست ماشین‌های ثبت شده</h3>
+                <div id="vehiclesList">
+                    <!-- لیست ماشین‌ها اینجا نمایش داده می‌شود -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // داده‌های سیستم
+        let currentUser = null;
+        let orders = JSON.parse(localStorage.getItem('productionOrders')) || [];
+        let vehicles = JSON.parse(localStorage.getItem('securityVehicles')) || [];
+        
+        const users = {
+            '123': { password: '1234', role: 'sales', name: 'کاربر فروش' },
+            '222': { password: '2222', role: 'production', name: 'کاربر تولید' },
+            '333': { password: '3333', role: 'warehouse', name: 'کاربر انبار' },
+            '444': { password: '4444', role: 'security', name: 'کاربر حراست' }
+        };
+
+        // سیستم لاگین
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('errorMessage');
+            
+            errorElement.style.display = 'none';
+            
+            if (users[username] && users[username].password === password) {
+                currentUser = users[username];
+                showMainSystem();
+            } else {
+                errorElement.textContent = '❌ نام کاربری یا رمز عبور اشتباه است!';
+                errorElement.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('mainSystem').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function showMainSystem() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainSystem').style.display = 'block';
+            document.getElementById('userInfo').textContent = currentUser.name;
+            
+            setupNavigation();
+            showSection('dashboard');
+            updateDashboard();
+            loadOrders();
+            loadVehicles();
+            
+            // اضافه کردن رویداد برای پیش‌نمایش عکس
+            document.getElementById('productImage').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('previewImg').src = e.target.result;
+                        document.getElementById('imagePreview').style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function setupNavigation() {
+            const navButtons = document.getElementById('navButtons');
+            navButtons.innerHTML = '';
+            
+            const dashboardBtn = document.createElement('button');
+            dashboardBtn.className = 'nav-btn';
+            dashboardBtn.textContent = '🏠 صفحه اصلی';
+            dashboardBtn.onclick = () => showSection('dashboard');
+            navButtons.appendChild(dashboardBtn);
+            
+            if (currentUser.role === 'sales' || currentUser.role === 'production') {
+                const salesBtn = document.createElement('button');
+                salesBtn.className = 'nav-btn';
+                salesBtn.textContent = '💰 فروش';
+                salesBtn.onclick = () => showSection('sales');
+                navButtons.appendChild(salesBtn);
+            }
+            
+            if (currentUser.role === 'production') {
+                const productionBtn = document.createElement('button');
+                productionBtn.className = 'nav-btn';
+                productionBtn.textContent = '🏭 تولید';
+                productionBtn.onclick = () => showSection('production');
+                navButtons.appendChild(productionBtn);
+            }
+            
+            if (currentUser.role === 'warehouse') {
+                const warehouseBtn = document.createElement('button');
+                warehouseBtn.className = 'nav-btn';
+                warehouseBtn.textContent = '📦 انبار';
+                warehouseBtn.onclick = () => showSection('warehouse');
+                navButtons.appendChild(warehouseBtn);
+            }
+            
+            if (currentUser.role === 'security') {
+                const securityBtn = document.createElement('button');
+                securityBtn.className = 'nav-btn';
+                securityBtn.textContent = '🚔 حراست';
+                securityBtn.onclick = () => showSection('security');
+                navButtons.appendChild(securityBtn);
+            }
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            if (sectionId === 'production') {
+                generateProductionPlan();
+            } else if (sectionId === 'security') {
+                loadVehicles();
+            }
+        }
+
+        // مدیریت سفارشات
+        function addOrder() {
+            const customer = document.getElementById('customerName').value;
+            const product = document.getElementById('productSelect').value;
+            const quantity = document.getElementById('orderQuantity').value;
+            const priority = document.getElementById('prioritySelect').value;
+            const date = document.getElementById('shamsiDate').value;
+            
+            if (!customer || !product || !quantity || !date) {
+                alert('لطفاً تمام فیلدها را پر کنید!');
+                return;
+            }
+            
+            const newOrder = {
+                id: Date.now(),
+                customer,
+                product,
+                quantity: parseInt(quantity),
+                priority,
+                deliveryDate: date,
+                status: 'pending',
+                createdAt: new Date().toLocaleDateString('fa-IR')
+            };
+            
+            orders.push(newOrder);
+            saveOrders();
+            loadOrders();
+            updateDashboard();
+            
+            document.getElementById('customerName').value = '';
+            document.getElementById('productSelect').value = '';
+            document.getElementById('orderQuantity').value = '';
+            document.getElementById('prioritySelect').value = 'medium';
+            document.getElementById('shamsiDate').value = '';
+            
+            alert('✅ سفارش با موفقیت ثبت شد!');
+        }
+
+        function loadOrders() {
+            const orderList = document.getElementById('orderList');
+            
+            if (orders.length === 0) {
+                orderList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">📝 هیچ سفارشی ثبت نشده است</p>';
+                return;
+            }
+            
+            const priorityOrder = { high: 3, medium: 2, low: 1 };
+            const sortedOrders = [...orders].sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>مشتری</th>
+                            <th>محصول</th>
+                            <th>تعداد</th>
+                            <th>اولویت</th>
+                            <th>تاریخ تحویل</th>
+                            <th>تاریخ ثبت</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            sortedOrders.forEach(order => {
+                const priorityClass = `priority-${order.priority}`;
+                html += `
+                    <tr class="${priorityClass}">
+                        <td>${order.customer}</td>
+                        <td>${order.product}</td>
+                        <td>${order.quantity.toLocaleString()}</td>
+                        <td>${getPriorityText(order.priority)}</td>
+                        <td>${order.deliveryDate}</td>
+                        <td>${order.createdAt}</td>
+                        <td>${getStatusText(order.status)}</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            orderList.innerHTML = html;
+        }
+
+        function getPriorityText(priority) {
+            const texts = { 
+                high: '🔴 بالا', 
+                medium: '🟡 متوسط', 
+                low: '🟢 پایین' 
+            };
+            return texts[priority] || priority;
+        }
+
+        function getStatusText(status) {
+            const texts = { 
+                pending: '⏳ منتظر', 
+                confirmed: '✅ تأیید شده', 
+                produced: '🏭 تولید شده' 
+            };
+            return texts[status] || status;
+        }
+
+        // برنامه‌ریزی تولید
+        function generateProductionPlan() {
+            const schedule = document.getElementById('productionSchedule');
+            let html = '';
+            
+            const highPriorityOrders = orders.filter(order => 
+                order.priority === 'high' && order.status === 'pending'
+            );
+            
+            const mediumPriorityOrders = orders.filter(order => 
+                order.priority === 'medium' && order.status === 'pending'
+            );
+            
+            if (highPriorityOrders.length > 0) {
+                html += `
+                    <div class="machine-card">
+                        <h3>🚀 تولیدات با اولویت بالا (فوری)</h3>
+                        <div style="color: #d32f2f; font-weight: bold; margin-bottom: 15px;">
+                            ⚠️ این سفارشات باید در اولویت تولید قرار گیرند
+                        </div>
+                `;
+                
+                highPriorityOrders.forEach(order => {
+                    html += `
+                        <div style="background: #ffebee; padding: 15px; margin: 10px 0; border-radius: 8px; border-right: 4px solid #d32f2f;">
+                            <strong>📦 ${order.product}</strong>
+                            <div>👤 مشتری: ${order.customer}</div>
+                            <div>🔢 تعداد: ${order.quantity.toLocaleString()} واحد</div>
+                            <div>📅 تاریخ تحویل: ${order.deliveryDate}</div>
+                            <button class="nav-btn" onclick="markAsProduced(${order.id})" style="margin-top: 10px; padding: 5px 10px; font-size: 12px;">
+                                ✅ علامت‌گذاری به عنوان تولید شده
+                            </button>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            html += `
+                <div class="machine-card">
+                    <h3>🏭 برنامه زمان‌بندی دستگاه‌ها - امروز</h3>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="background: #e8f5e8; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                            <strong>🕗 ۰۸:۰۰ - ۱۲:۰۰ | دستگاه گلوگاه ۳۱</strong>
+                            <div>📦 محصول: نوتلا</div>
+                            <div>👥 تعداد نیرو: ۲۱ نفر</div>
+                            <div>🎯 هدف تولید: ۶۰۰ واحد</div>
+                            <div>⚡ وضعیت: در حال اجرا</div>
+                        </div>
+                        
+                        <div style="background: #fff3cd; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                            <strong>🕐 ۱۳:۰۰ - ۱۷:۰۰ | دستگاه گلوگاه ۳۱</strong>
+                            <div>📦 محصول: بیسکوویت</div>
+                            <div>👥 تعداد نیرو: ۲۱ نفر</div>
+                            <div>🎯 هدف تولید: ۷۰۰ واحد</div>
+                            <div>⚡ وضعیت: برنامه‌ریزی شده</div>
+                        </div>
+                        
+                        <div style="background: #e3f2fd; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                            <strong>🕗 ۰۸:۰۰ - ۱۶:۰۰ | دستگاه ۳۰</strong>
+                            <div>📦 محصول: بسکوییت + آردی</div>
+                            <div>👥 تعداد نیرو: ۲۰ نفر</div>
+                            <div>🎯 هدف تولید: ۴,۴۰۰ واحد</div>
+                            <div>⚡ وضعیت: در حال اجرا</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (mediumPriorityOrders.length > 0) {
+                html += `
+                    <div class="machine-card">
+                        <h3>📋 سفارشات با اولویت متوسط</h3>
+                        <div style="color: #f57c00; margin-bottom: 15px;">
+                            این سفارشات در نوبت بعدی تولید قرار می‌گیرند
+                        </div>
+                `;
+                
+                mediumPriorityOrders.forEach(order => {
+                    html += `
+                        <div style="background: #fff3e0; padding: 12px; margin: 8px 0; border-radius: 6px;">
+                            <strong>${order.product}</strong> | ${order.customer} | ${order.quantity.toLocaleString()} واحد
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            schedule.innerHTML = html;
+        }
+
+        function markAsProduced(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'produced';
+                saveOrders();
+                generateProductionPlan();
+                alert(`✅ سفارش ${order.product} به عنوان تولید شده علامت‌گذاری شد`);
+            }
+        }
+
+        // مدیریت حراست و ماشین‌آلات
+        function addVehicle() {
+            const name = document.getElementById('vehicleName').value;
+            const driver = document.getElementById('driverName').value;
+            const plate = document.getElementById('plateNumber').value;
+            const phone = document.getElementById('driverPhone').value;
+            const imageInput = document.getElementById('productImage');
+            
+            if (!name || !driver || !plate || !phone) {
+                alert('لطفاً تمام فیلدهای ضروری را پر کنید!');
+                return;
+            }
+            
+            let imageData = '';
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageData = e.target.result;
+                    saveVehicle(name, driver, plate, phone, imageData);
+                }
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                saveVehicle(name, driver, plate, phone, '');
+            }
+        }
+
+        function saveVehicle(name, driver, plate, phone, image) {
+            const newVehicle = {
+                id: Date.now(),
+                name,
+                driver,
+                plate,
+                phone,
+                image,
+                type: 'truck', // در نسخه کامل می‌تواند از کاربر گرفته شود
+                registeredAt: new Date().toLocaleDateString('fa-IR')
+            };
+            
+            vehicles.push(newVehicle);
+            saveVehicles();
+            loadVehicles();
+            updateDashboard();
+            
+            // پاک کردن فرم
+            document.getElementById('vehicleName').value = '';
+            document.getElementById('driverName').value = '';
+            document.getElementById('plateNumber').value = '';
+            document.getElementById('driverPhone').value = '';
+            document.getElementById('productImage').value = '';
+            document.getElementById('imagePreview').style.display = 'none';
+            
+            alert('✅ ماشین با موفقیت ثبت شد!');
+        }
+
+        function loadVehicles() {
+            const vehiclesList = document.getElementById('vehiclesList');
+            
+            if (vehicles.length === 0) {
+                vehiclesList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">🚚 هیچ ماشینی ثبت نشده است</p>';
+                return;
+            }
+            
+            let html = '<div class="vehicles-grid">';
+            
+            vehicles.forEach(vehicle => {
+                html += `
+                    <div class="vehicle-card">
+                        <h4>${vehicle.name}</h4>
+                        <div><strong>راننده:</strong> ${vehicle.driver}</div>
+                        <div><strong>پلاک:</strong> ${vehicle.plate}</div>
+                        <div><strong>تلفن:</strong> ${vehicle.phone}</div>
+                        <div><strong>تاریخ ثبت:</strong> ${vehicle.registeredAt}</div>
+                        ${vehicle.image ? `<img src="${vehicle.image}" alt="${vehicle.name}">` : '<div style="height: 120px; background: #eee; display: flex; align-items: center; justify-content: center; margin-top: 10px; border-radius: 8px;">بدون عکس</div>'}
+                        <button class="nav-btn" onclick="removeVehicle(${vehicle.id})" style="margin-top: 10px; padding: 5px 10px; font-size: 12px; background: #dc3545;">🗑 حذف</button>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            vehiclesList.innerHTML = html;
+        }
+
+        function removeVehicle(id) {
+            if (confirm('آیا از حذف این ماشین اطمینان دارید؟')) {
+                vehicles = vehicles.filter(vehicle => vehicle.id !== id);
+                saveVehicles();
+                loadVehicles();
+                updateDashboard();
+            }
+        }
+
+        function filterVehicles(type) {
+            // فعال کردن دکمه فیلتر مربوطه
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // در این نسخه ساده، همه ماشین‌ها نمایش داده می‌شوند
+            // در نسخه کامل می‌توان بر اساس نوع فیلتر کرد
+            loadVehicles();
+        }
+
+        function updateDashboard() {
+            const pendingOrders = orders.filter(order => order.status === 'pending').length;
+            document.getElementById('activeOrders').textContent = pendingOrders;
+            document.getElementById('totalVehicles').textContent = vehicles.length;
+        }
+
+        function saveOrders() {
+            localStorage.setItem('productionOrders', JSON.stringify(orders));
+        }
+
+        function saveVehicles() {
+            localStorage.setItem('securityVehicles', JSON.stringify(vehicles));
+        }
+
+        function getTodayShamsi() {
+            const today = new Date();
+            const year = today.getFullYear() - 621;
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}/${month}/${day}`;
+        }
+
+        // مقداردهی اولیه
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-date').textContent = 'تاریخ: ' + getTodayShamsi();
+            document.getElementById('shamsiDate').value = getTodayShamsi();
+        });
+
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>
